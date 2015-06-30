@@ -1,0 +1,6 @@
+{
+    "repos": "https://github.com/ciaoca/cxScroll",
+    "version": "v1.2.0",
+    "name": "jquery-cxscroll",
+    "main": "jquery.cxscroll.js"
+}
