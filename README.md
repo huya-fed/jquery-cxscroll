@@ -117,6 +117,8 @@
 
 ###调用 cxScroll
 
+	require('jquery-cxscroll');
+
 	// 直接调用
 	$("#element_id").cxScrolljs();
 	
