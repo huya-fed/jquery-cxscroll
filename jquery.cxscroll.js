@@ -2,7 +2,6 @@
  * 
     直接调用
     $("#element_id").cxScroll();
-
     自定义参数调用
     $("#element_id").cxScroll({
         direction:"right",
@@ -156,45 +155,46 @@
         var _dis;   // _dis 滚动的距离
         var _speed = t || this.options.speed;
         var _this = this;
-
         switch(d){
             case "left":
             case "top":
                 _max=0;
                 if(d == "left"){
-                    if(parseInt(this.box.scrollLeft(),10)==0){
+                    //归位
+                    if(parseInt(this.box.scrollLeft(),10) == 0){
                         this.box.scrollLeft(this.itemSum*this.moveVal);
                     };
 
+                    //运动的距离
                     _dis=this.box.scrollLeft()-(this.moveVal * this.options.step);
 
-                    if( _dis % this.itemWidth > 0){
+                    /*if( _dis % this.itemWidth > 0){
                         _dis -= _dis%this.itemWidth;
-                    };
+                    };*/
 
-                    if(_dis < _max){ _dis=_max};
-                    this.box.animate({"scrollLeft":_dis},_speed,this.options.easing,function(){
-                        if(parseInt(_this.box.scrollLeft(),10)<=_max){
-                            _this.box.scrollLeft(0);
-                        };
-                    });
+                    if(_dis < 0){ 
+                        this.box.scrollLeft(this.itemSum*this.moveVal - _dis);
+                        _dis=this.box.scrollLeft()-(this.moveVal * this.options.step);
+                    };
+                    this.box.animate({"scrollLeft":_dis},_speed,this.options.easing);
                 }else{
+                    //归位
                     if(parseInt(this.box.scrollTop(),10)==0){
                         this.box.scrollTop(this.itemSum*this.moveVal);
                     };
+                    //运动的距离
                     _dis=this.box.scrollTop()-(this.moveVal*this.options.step);
 
-                    if(_dis%this.itemHeight>0){
+                    /*if(_dis%this.itemHeight>0){
                         _dis-=_dis%this.itemHeight;
+                    };*/
+
+                    if(_dis < 0){ 
+                        this.box.scrollTop(this.itemSum*this.moveVal - _dis);
+                        _dis=this.box.scrollTop()-(this.moveVal * this.options.step);
                     };
 
-                    if(_dis<_max){_dis=_max};
-
-                    this.box.animate({"scrollTop":_dis},_speed,this.options.easing,function(){
-                        if(parseInt(_this.box.scrollTop(),10)<=_max){
-                            _this.box.scrollTop(0);
-                        };
-                    });
+                    this.box.animate({"scrollTop":_dis},_speed,this.options.easing);
                 };
                 break;
 
@@ -205,28 +205,28 @@
                 if(d=="right"){
                     _dis=this.box.scrollLeft()+(this.moveVal*this.options.step);
 
-                    if(_dis%this.itemWidth>0){
+                    /*if(_dis%this.itemWidth>0){
                         _dis-=(_dis%this.itemWidth);
-                    };
+                    };*/
 
-                    if(_dis>_max){_dis=_max};
+                    //if(_dis>_max){_dis=_max};
 
                     this.box.animate({"scrollLeft":_dis},_speed,this.options.easing,function(){
                         if(parseInt(_this.box.scrollLeft(),10)>=_max){
-                            _this.box.scrollLeft(0);
+                            _this.box.scrollLeft(_dis-_max);
                         };
                     });
                 }else{
                     _dis=this.box.scrollTop()+(this.moveVal*this.options.step);
 
-                    if(_dis%this.itemHeight>0){
+                    /*if(_dis%this.itemHeight>0){
                         _dis-=(_dis%this.itemHeight);
-                    };
+                    };*/
                     
-                    if(_dis>_max){_dis=_max};
+                    //if(_dis>_max){_dis=_max};
                     this.box.animate({"scrollTop":_dis},_speed,this.options.easing,function(){
                         if(parseInt(_this.box.scrollTop(),10)>=_max){
-                            _this.box.scrollTop(0);
+                            _this.box.scrollTop(_dis-_max);
                         };
                     });
                 };
