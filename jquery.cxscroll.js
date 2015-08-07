@@ -44,7 +44,7 @@
 
     cxScroll.prototype.init = function(){
         var $element = $(this.element);
-
+        var _this = this;
         this.box=$element.find(".box");
         this.list=this.box.find(".list");
         this.items=this.list.find("li");
@@ -90,13 +90,13 @@
         // 事件：鼠标移入停止，移出开始
         if(this.options.auto){
             $element.hover(function(){
-                this.options.auto=false;
-                this.lock=false;
-                this._off();
+                _this.options.auto=false;
+                _this.lock=false;
+                _this._off();
             },function(){
-                this.options.auto=true;
-                this.lock=false;
-                this._on();
+                _this.options.auto=true;
+                _this.lock=false;
+                _this._on();
             });
         };
 
