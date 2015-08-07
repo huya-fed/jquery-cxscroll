@@ -56,8 +56,8 @@
         this.prevBtn=$element.find(".prev");
         this.nextBtn=$element.find(".next");
 
-        this.itemWidth=this.items.outerWidth();
-        this.itemHeight=this.items.outerHeight();
+        this.itemWidth=this.items.outerWidth(true);
+        this.itemHeight=this.items.outerHeight(true);
 
         if(this.options.direction=="left" || this.options.direction=="right"){
             // 容器宽度不足时，不进行滚动
